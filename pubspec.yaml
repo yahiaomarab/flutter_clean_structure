@@ -1,0 +1,29 @@
+name: flutter_clean_structure
+description: "A Flutter CLI tool that generates a complete
+  Clean Architecture folder structure with core
+  and feature folders, ready to use immediately.
+  Save hours of project setup time."
+version: 0.0.1
+homepage: https://github.com/yahiaomarab/flutter_clean_structure
+repository: https://github.com/yahiaomarab/flutter_clean_structure
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  args: ^2.4.2          # parse CLI arguments
+  path: ^1.8.3          # handle file paths
+  mason_logger: ^0.3.1  # beautiful CLI output
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  test: ^1.24.0
+
+
+# This makes package runnable as CLI tool
+executables:
+  create: main   # dart run flutter_clean_structure:create
