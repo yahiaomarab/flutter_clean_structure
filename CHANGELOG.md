@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.1] - 2026-10-18
+
+### Added
+- Dartdoc comments on the entire public API, plus a library-level overview
+- `example/main.dart` showing how to use the generator from Dart code
+- Unit tests for `ProjectConfig`, `FileUtils` and `ProjectGenerator`
+- `topics` and `issue_tracker` in `pubspec.yaml` for better discoverability
+
+### Fixed
+- Generated `app_router.dart` imported `presentation/pages/<name>_page.dart`,
+  which is never generated; it now imports `ui/<name>_screen.dart`
+- `ProjectConfig.toFileName` removed the underscore from snake_case names,
+  so `user_profile` became `userprofile`
+- `ProjectConfig.toClassName` crashed on empty name segments such as `a__b`
+- The success message printed a folder layout (`domain/`, `presentation/`,
+  `constants/`) that did not match the generated files, and pointed to a
+  non-existent `injection_container.dart`
+
+### Changed
+- Resolved all `dart analyze` findings (unnecessary string interpolation
+  braces and library name)
+- `ProjectConfig` now has a `const` constructor
+
+---
+
 ## [1.0.0] - 2026-06-27
 
 ### Added
@@ -44,5 +69,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to choose state management (Cubit vs Bloc vs Riverpod)
 - Option to choose navigation (Navigator 1.0 vs GoRouter)
 - `pubspec.yaml` dependency injection after generation
-- Unit tests for generator and templates
+- More unit tests that check the content of generated templates
 - Support for custom template overrides via config file

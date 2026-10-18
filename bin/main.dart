@@ -191,28 +191,26 @@ void _printSuccessMessage(
   logger.info('');
   logger.info('lib/');
   logger.info('  ├── core/');
-  logger.info('  │     ├── constants/');
-  logger.info('  │     ├── errors/');
-  logger.info('  │     ├── network/');
-  logger.info('  │     ├── router/');
-  logger.info('  │     ├── theme/');
-  logger.info('  │     ├── utils/');
-  logger.info('  │     ├── widgets/');
-  logger.info('  │     └── di/');
+  logger.info('  │     ├── di/');
+  logger.info('  │     ├── helper/');
+  logger.info('  │     ├── networking/');
+  logger.info('  │     ├── routing/');
+  logger.info('  │     ├── theming/');
+  logger.info('  │     └── widgets/');
   logger.info('  │');
   logger.info('  ├── features/');
   for (final feature in config.features) {
     logger.info('  │     ├── $feature/');
     logger.info('  │     │     ├── data/');
-    logger.info('  │     │     ├── domain/');
-    logger.info('  │     │     └── presentation/');
+    logger.info('  │     │     ├── logic/');
+    logger.info('  │     │     └── ui/');
   }
   logger.info('  │');
   logger.info('  └── main.dart');
   logger.info('');
   logger.info('🎯 Next steps:');
-  logger.info('  1. cd lib/');
-  logger.info('  2. Start coding your features!');
-  logger.info('  3. Check injection_container.dart');
+  logger.info('  1. Set your base URL in core/networking/api_constants.dart');
+  logger.info('  2. Register dependencies in core/di/dependency_injection.dart');
+  logger.info('  3. Run: dart run build_runner build --delete-conflicting-outputs');
   logger.info('');
 }
