@@ -15,11 +15,11 @@ class FeatureTemplates {
 class ${className}ApiConstants {
   // TODO: Add your $featureName endpoints here
   // Example:
-  static const String getAll${className} = '${featureName}s';
-  static const String getOnce${className} = '${featureName}s/{index}';
-  static const String add${className} = '${featureName}s';
-  static const String update${className} = '${featureName}sUpdate/{index}';
-  static const String delete${className} = '${featureName}s/{index}';
+  static const String getAll$className = '${featureName}s';
+  static const String getOnce$className = '${featureName}s/{index}';
+  static const String add$className = '${featureName}s';
+  static const String update$className = '${featureName}sUpdate/{index}';
+  static const String delete$className = '${featureName}s/{index}';
 }
 ''';
   }
@@ -44,16 +44,16 @@ abstract class ${className}ApiService {
 
   // TODO: Add your endpoints here
   // Example:
-  // @GET(${className}ApiConstants.getAll${className})
+  // @GET(${className}ApiConstants.getAll$className)
   // Future<${className}Response> getAll${className}s();
 
-  // @POST(${className}ApiConstants.add${className})
-  // Future<${className}Response> add${className}(
+  // @POST(${className}ApiConstants.add$className)
+  // Future<${className}Response> add$className(
   //   @Body() ${className}RequestBody requestBody,
   // );
 
-  // @DELETE(${className}ApiConstants.delete${className})
-  // Future<${className}Response> delete${className}(
+  // @DELETE(${className}ApiConstants.delete$className)
+  // Future<${className}Response> delete$className(
   //   @Path("index") int index,
   // );
 }
@@ -166,11 +166,11 @@ class ${className}Repo {
   //   }
   // }
 
-  // Future<ApiResult<${className}Response>> add${className}(
+  // Future<ApiResult<${className}Response>> add$className(
   //   ${className}RequestBody requestBody,
   // ) async {
   //   try {
-  //     final response = await _apiService.add${className}(requestBody);
+  //     final response = await _apiService.add$className(requestBody);
   //     return ApiResult.success(response);
   //   } catch (e) {
   //     return ApiResult.failure(ApiErrorHandler.handle(e));

@@ -230,7 +230,7 @@ dart run flutter_clean_structure:create --full
 → Enter feature names: auth,home,profile
 ```
 
-Result: **37 files** created instantly across a fully organized project structure.
+Result: **45 files** created instantly across a fully organized project structure.
 
 Adding a new feature later:
 
@@ -238,7 +238,7 @@ Adding a new feature later:
 dart run flutter_clean_structure:create --name orders
 ```
 
-Result: **5 files** created under `lib/features/orders/` in the correct structure.
+Result: **8 files** created under `lib/features/orders/` in the correct structure.
 
 ---
 

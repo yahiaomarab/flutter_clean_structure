@@ -1,25 +1,33 @@
-// lib/src/utils/file_utils.dart
 import 'dart:io';
+
 import 'package:path/path.dart' as path;
 
+/// File system helpers used by the generator.
+///
+/// All methods are static and safe to call repeatedly.
 class FileUtils {
-  // Create directory if it doesn't exist
-  static Future<void> createDirectory(
-      String dirPath) async {
+  FileUtils._();
+
+  /// Creates the directory at [dirPath], including any missing parents.
+  ///
+  /// Does nothing if the directory already exists.
+  static Future<void> createDirectory(String dirPath) async {
     final dir = Directory(dirPath);
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
   }
 
-  // Create file with content
+  /// Writes [content] to a new file at [filePath], creating parent
+  /// directories as needed.
+  ///
+  /// An existing file is never overwritten, so running the generator again
+  /// cannot destroy your work.
   static Future<void> createFile(
     String filePath,
     String content,
   ) async {
-    // Create parent directories first
-    final parent = path.dirname(filePath);
-    await createDirectory(parent);
+    await createDirectory(path.dirname(filePath));
 
     final file = File(filePath);
     if (!await file.exists()) {
@@ -27,19 +35,20 @@ class FileUtils {
     }
   }
 
-  // Create empty .gitkeep file to preserve empty dirs
-  static Future<void> createGitKeep(
-      String dirPath) async {
+  /// Creates an empty `.gitkeep` file inside [dirPath] so that Git keeps
+  /// an otherwise empty directory.
+  static Future<void> createGitKeep(String dirPath) async {
     await createDirectory(dirPath);
-    await createFile(
-      path.join(dirPath, '.gitkeep'),
-      '',
-    );
+    await createFile(path.join(dirPath, '.gitkeep'), '');
   }
 
-  // Join paths cross-platform
+  /// Joins [parts] into one path using the separator of the current
+  /// platform.
+  ///
+  /// [parts] must not be empty.
   static String joinPath(List<String> parts) {
     return parts.reduce(
-        (value, element) => path.join(value, element));
+      (value, element) => path.join(value, element),
+    );
   }
 }

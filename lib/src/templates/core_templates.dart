@@ -511,7 +511,7 @@ class DioFactory {
 
     final imports = features.map((f) {
       final fileName = ProjectConfig.toFileName(f);
-      return "import '../../features/$f/presentation/pages/${fileName}_page.dart';";
+      return "import '../../features/$f/ui/${fileName}_screen.dart';";
     }).join('\n');
 
     return '''

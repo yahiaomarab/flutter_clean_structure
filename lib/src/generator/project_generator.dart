@@ -7,17 +7,43 @@ import '../utils/file_utils.dart';
 import '../templates/core_templates.dart';
 import '../templates/feature_templates.dart';
 
+/// Writes the Clean Architecture folder structure described by a
+/// [ProjectConfig] to disk.
+///
+/// A full run generates the shared `core/` folder, one folder per feature
+/// under `features/`, and a `main.dart` entry point. Existing files are
+/// never overwritten.
+///
+/// ```dart
+/// final generator = ProjectGenerator(
+///   config: ProjectConfig(projectName: 'my_app', features: ['auth']),
+///   logger: Logger(),
+/// );
+/// await generator.generate();
+/// ```
 class ProjectGenerator {
-  final ProjectConfig config;
-  final Logger logger;
-  final bool featureOnly;
-
+  /// Creates a generator for the given [config].
+  ///
+  /// Progress and diagnostics are written to [logger]. Set [featureOnly] to
+  /// `true` when only [generateFeatureOnly] will be called.
   ProjectGenerator({
     required this.config,
     required this.logger,
     this.featureOnly = false,
   });
 
+  /// What to generate and where to write it.
+  final ProjectConfig config;
+
+  /// Receives progress and diagnostic messages while generating.
+  final Logger logger;
+
+  /// Whether this generator is used to add a single feature to an existing
+  /// project, without touching the `core/` folder.
+  final bool featureOnly;
+
+  /// Generates the full project: the `core/` folder, every feature in
+  /// [ProjectConfig.features], and `main.dart`.
   Future<void> generate() async {
     await _generateCore();
     for (final feature in config.features) {
@@ -26,6 +52,9 @@ class ProjectGenerator {
     await _generateMain();
   }
 
+  /// Generates only the folder for [featureName] under `features/`.
+  ///
+  /// The shared `core/` folder and `main.dart` are left untouched.
   Future<void> generateFeatureOnly(String featureName) async {
     await _generateFeature(featureName);
   }
